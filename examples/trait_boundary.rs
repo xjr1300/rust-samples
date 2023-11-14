@@ -1,3 +1,19 @@
+impl IAbs for i8 {
+    type Output = u8;
+}
+
+impl IAbs for i16 {
+    type Output = u16;
+}
+
+impl IAbs for i32 {
+    type Output = u32;
+}
+
+impl IAbs for i64 {
+    type Output = u64;
+}
+
 // /// 数値の絶対値を求めるトレイト
 // trait IAbs {
 //     type Output;
@@ -54,8 +70,8 @@
 // ///     expected type parameter `Self`
 // ///     found type `{integer}`
 // /// `IAbs`トレイトは、i8, i16, i32, i64が実装
-// /// 比較演算子で使用している0をi8にして、i16, i32, i64が実装するFrom<u8>を利用
-// /// できるため、into()する。
+// /// 比較演算子で使用している0をi8にして、i16, i32, i64が実装するFrom<u8>で、
+// /// i8をそれぞれの型に変換するためにinto()する。
 // ///
 // /// 数値の絶対値を求めるトレイト
 // trait IAbs {
@@ -124,7 +140,7 @@ use std::ops::Neg;
 // /// `as`式は、プリミティブ型間の変換、または特定のトレイトオブジェクトに強制変換するためにのみ使用
 // ///
 // /// Selfを<Self as IAbs>::Outputに変換するため、TryIntoでSelfを<Self as IAbs>::Outputに
-// /// 変換できる制約を追加
+// /// 変換する制約を追加
 // ///
 // /// 数値の絶対値を求めるトレイト
 // trait IAbs {
@@ -147,8 +163,8 @@ use std::ops::Neg;
 // ///        found enum `Result<<Self as IAbs>::Output, <Self as TryInto<<Self as IAbs>::Output>>::Error>`
 // /// を修正
 // ///
-// /// try_into()は、Resultを変換する。
-// /// 例えば。正のi32は、u32に常に変換可能であるため、unwrap()でResultのラップを剥がす。
+// /// try_into()は、Resultを返す。
+// /// 例えば、正のi32は、常にu32に変換可能であるため、unwrap()でResultのラップをはがして、変換した結果を得る。
 // ///
 // /// 数値の絶対値を求めるトレイト
 // trait IAbs {
@@ -173,7 +189,7 @@ use std::fmt::Debug;
 // /// を修正
 // ///
 // /// <Self as TryInto<<Self as IAbs>::Output>>::Errorが、Debugを実装していないことを示しているため、
-// /// <Self as TryInto<<Self as IAbs>::Output>>::Error: Debugをトレイト境界に追加
+// /// <Self as TryInto<<Self as IAbs>::Output>>::Error: Debugを制約に追加
 // ///
 // /// 数値の絶対値を求めるトレイト
 // trait IAbs {
@@ -199,8 +215,9 @@ use std::fmt::Debug;
 // /// を修正
 // ///
 // /// コンパイラが、<Self as IAbs>::Output: From<<Self as Neg>::Output>の制約を提案しているが、例えば
-// /// From<i8> -> u8は実装されていない。
-// /// TryFrom<i8> for u8は実装されているため、<Self as IAbs>::Output: TryFrom<<Self as Neg>::Output>を追加
+// /// `From<i8> for u8`は実装されていない。
+// /// `TryFrom<i8> for u8`は実装されているため、<Self as IAbs>::Output: TryFrom<<Self as Neg>::Output>
+// /// を制約に追加
 // ///
 // /// 数値の絶対値を求めるトレイト
 // trait IAbs {
@@ -244,22 +261,6 @@ trait IAbs {
             (-self).try_into().unwrap()
         }
     }
-}
-
-impl IAbs for i8 {
-    type Output = u8;
-}
-
-impl IAbs for i16 {
-    type Output = u16;
-}
-
-impl IAbs for i32 {
-    type Output = u32;
-}
-
-impl IAbs for i64 {
-    type Output = u64;
 }
 
 fn main() {
