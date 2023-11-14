@@ -266,21 +266,21 @@ trait IAbs {
 fn main() {
     assert_eq!(0_u8, 0_i8.iabs());
     assert_eq!(1_u8, 1_i8.iabs());
-    assert_eq!(1_u8, (-1 as i8).iabs());
+    assert_eq!(1_u8, (-1_i8).iabs());
 
     assert_eq!(0_u16, 0_i16.iabs());
     assert_eq!(1_u16, 1_i16.iabs());
-    assert_eq!(1_u16, (-1 as i16).iabs());
+    assert_eq!(1_u16, (-1_i16).iabs());
 
     assert_eq!(0_u16, 0_i16.iabs());
     assert_eq!(1_u16, 1_i16.iabs());
-    assert_eq!(1_u16, (-1 as i16).iabs());
+    assert_eq!(1_u16, (-1_i16).iabs());
 
     assert_eq!(0_u32, 0_i32.iabs());
     assert_eq!(1_u32, 1_i32.iabs());
-    assert_eq!(1_u32, (-1 as i32).iabs());
+    assert_eq!(1_u32, (-1_i32).iabs());
 
     assert_eq!(0_u64, 0_i64.iabs());
     assert_eq!(1_u64, 1_i64.iabs());
-    assert_eq!(1_u64, (-1 as i64).iabs());
+    assert_eq!(1_u64, (-1_i64).iabs());
 }
