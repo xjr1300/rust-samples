@@ -142,6 +142,7 @@ fn main() {
     // `T: Clone`バージョン
     cloned();
 
+    // `Result<Option<T>, E>`を`Option<Result<T, E>>`に変換する
     transpose();
 }
 
