@@ -23,4 +23,21 @@ fn main() {
     assert_eq!(iter.next(), Some((&1, &4)));
     assert_eq!(iter.next(), Some((&2, &5)));
     assert_eq!(iter.next(), None);
+
+    // 文字列で要素数が等しい場合
+    let s1 = "abc\ndef\nghi\n";
+    let s2 = "012\n345\n678\n";
+    let mut iter = s1.lines().zip(s2.lines());
+    assert_eq!(iter.next(), Some(("abc", "012")));
+    assert_eq!(iter.next(), Some(("def", "345")));
+    assert_eq!(iter.next(), Some(("ghi", "678")));
+    assert_eq!(iter.next(), None);
+
+    // 文字列で要素数が異なる場合
+    let s1 = "abc\ndef\nghi\n";
+    let s2 = "012\n345\n";
+    let mut iter = s1.lines().zip(s2.lines());
+    assert_eq!(iter.next(), Some(("abc", "012")));
+    assert_eq!(iter.next(), Some(("def", "345")));
+    assert_eq!(iter.next(), None);
 }
