@@ -30,7 +30,9 @@ fn main() {
     // //    |                    ^ value borrowed here after move
     // println!("{}", b); // bが所有していた可変参照はdにムーブしたためエラー
 
+    #[allow(clippy::disallowed_names)]
     let mut foo = Foo { a: 42 };
+
     // 可変参照を取得
     let mut_ref_foo = &mut foo;
     // 可変参照を介して、Fooのフィールドを変更

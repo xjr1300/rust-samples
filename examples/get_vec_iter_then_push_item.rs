@@ -2,6 +2,7 @@
 #[allow(unused_mut)]
 
 fn main() {
+    #[allow(clippy::useless_vec)]
     let mut v = vec![1, 2, 3]; // warning: unused_mut
     let it = v.iter();
     // error[E0502]: cannot borrow `v` as mutable because it is also borrowed as immutable

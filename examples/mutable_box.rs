@@ -38,7 +38,7 @@ fn main() {
     assert_eq!(10, boxed_point.point.x);
     assert_eq!(5, boxed_point.point.y);
 
-    let other_point = Box::new(Point::default());
+    let other_point = Box::<Point>::default();
     *boxed_point.mutable_borrow() = other_point;
     assert_eq!(0, boxed_point.point.x);
     assert_eq!(0, boxed_point.point.y);

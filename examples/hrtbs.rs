@@ -44,12 +44,12 @@ impl<F> Closure<F>
 where
     for<'a> F: Fn(&'a (u8, u16)) -> &'a u8,
 {
-    fn call<'a>(&'a self) -> &'a u8 {
+    fn call(&self) -> &u8 {
         (self.func)(&self.data)
     }
 }
 
-fn do_it<'b>(data: &'b (u8, u16)) -> &'b u8 {
+fn do_it(data: &(u8, u16)) -> &u8 {
     &data.0
 }
 
